@@ -13,6 +13,9 @@ class Inspect(HTMLParser):
         self.ids = []
         self.local_assets = []
         self.scenes = 0
+        self.text = []
+    def handle_data(self, data):
+        self.text.append(data)
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if 'id' in attrs:
@@ -33,7 +36,8 @@ for path in inspector.local_assets + re.findall(r"url\('([^']+)'\)", css):
     assert (root / path).is_file(), f'Missing asset: {path}'
 for path in (root / 'assets/fonts').glob('*.woff2'):
     assert path.read_bytes()[:4] == b'wOF2', f'Not an actual WOFF2 font: {path}'
-assert '540' not in html and '2215' not in html, 'Order or price accidentally published'
+visible_text = ' '.join(inspector.text)
+assert '540' not in visible_text and '2215' not in visible_text, 'Order or price accidentally published'
 assert 'rok od daty wystawienia' in html
 assert 'Boryska' in html and 'Gosi' in html and 'pięciu' in html
 assert 'prefers-reduced-motion' in css

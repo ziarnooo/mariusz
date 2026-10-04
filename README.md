@@ -18,12 +18,11 @@ Workflow tworzy QR na podstawie rzeczywistego adresu skonfigurowanego przez GitH
 
 ## Zdjęcia rodzinne
 
-Są trzy celowe miejsca na zdjęcia: wspólne podróże, rodzina / Mariusz i Gosia, dziadek i Borys.
+Zdjęcia są zapisane jako zmniejszone pliki WebP w `assets/photos/`. Cztery zdjęcia są w galerii podróży, trzy w części rodzinnej, a jedno w części o strzelnicy. Galerie pokazują zdjęcia obok siebie i można je przewijać na telefonie. Obrazy rodzinne są ładowane dopiero po otwarciu odpowiedniego rozdziału. Ścieżki, opisy i rozmiary zdjęć znajdują się w `index.html`.
 
-1. Zoptymalizowane zdjęcia umieść w `assets/photos/` (najlepiej WebP, do około 150 KB każde).
-2. W `content.js` wpisz ścieżki w polu `src`, np. `assets/photos/podroz.webp`, oraz opis `alt`.
+## Pełny ekran
 
-Nieudane ładowanie zdjęcia pozostawia ilustracyjny placeholder. Treści życzeń znajdują się w `index.html`. Nadawcy: Marta i Dominik.
+Strona próbuje uruchomić pełny ekran przy otwarciu. Jeśli przeglądarka wymaga aktywności użytkownika, ponawia próbę po kliknięciu „Otwórz życzenia”. Przycisk „Pełny ekran” pozwala wejść ręcznie, a „Zmniejsz” wyjść. Przycisk jest ukryty, jeśli przeglądarka nie obsługuje tego trybu. Odmowa nie blokuje czytania kartki.
 
 ## Dane prezentu
 

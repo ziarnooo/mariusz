@@ -23,16 +23,46 @@
     return button;
   });
 
-  document.querySelectorAll('[data-photo-slot]').forEach(slot => {
-    const photo = window.BIRTHDAY_PHOTOS?.[slot.dataset.photoSlot];
-    if (!photo?.src) return;
-    const image = new Image();
-    image.alt = photo.alt || '';
-    image.loading = 'lazy';
-    image.decoding = 'async';
-    image.addEventListener('load', () => slot.querySelector('.photo-placeholder')?.replaceWith(image), { once: true });
-    image.src = photo.src;
+  const fullscreenButton = document.getElementById('fullscreen-toggle');
+  const fullscreenLabel = fullscreenButton.querySelector('.fullscreen-label');
+  const fullscreenSupported = Boolean(document.fullscreenEnabled && document.documentElement.requestFullscreen);
+  let fullscreenPending = false;
+  let fullscreenWasActive = false;
+  let fullscreenDismissed = false;
+
+  function syncFullscreen() {
+    const active = Boolean(document.fullscreenElement);
+    if (fullscreenWasActive && !active) fullscreenDismissed = true;
+    fullscreenWasActive = active;
+    fullscreenButton.hidden = !fullscreenSupported;
+    fullscreenButton.setAttribute('aria-pressed', String(active));
+    fullscreenButton.setAttribute('aria-label', active ? 'Wyjdź z pełnego ekranu' : 'Włącz pełny ekran');
+    fullscreenLabel.textContent = active ? 'Zmniejsz' : 'Pełny ekran';
+  }
+
+  async function enterFullscreen() {
+    if (!fullscreenSupported || document.fullscreenElement || fullscreenPending) return;
+    fullscreenPending = true;
+    try {
+      await document.documentElement.requestFullscreen();
+    } catch {
+      // Przeglądarka może wymagać kliknięcia lub nie udostępniać pełnego ekranu.
+    } finally {
+      fullscreenPending = false;
+      syncFullscreen();
+    }
+  }
+
+  fullscreenButton.addEventListener('click', async () => {
+    if (document.fullscreenElement) {
+      try { await document.exitFullscreen(); } catch { syncFullscreen(); }
+    } else {
+      fullscreenDismissed = false;
+      enterFullscreen();
+    }
   });
+  document.addEventListener('fullscreenchange', syncFullscreen);
+  syncFullscreen();
 
   function loadAssets(scene) {
     scene.querySelectorAll('img[data-src]').forEach(image => {
@@ -82,7 +112,10 @@
     }, reduced.matches ? 0 : 220);
   }
 
-  next.addEventListener('click', () => go(index === scenes.length - 1 ? 0 : index + 1));
+  next.addEventListener('click', () => {
+    if (index === 0 && !fullscreenDismissed) enterFullscreen();
+    go(index === scenes.length - 1 ? 0 : index + 1);
+  });
   back.addEventListener('click', () => go(index - 1));
   document.querySelector('.monogram').addEventListener('click', event => { event.preventDefault(); go(0); });
   window.addEventListener('popstate', () => go(fromHash(), false));
@@ -108,4 +141,5 @@
   index = fromHash();
   farthest = index;
   render(false);
+  enterFullscreen();
 })();
