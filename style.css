@@ -22,3 +22,5 @@
 @media(max-width:850px){.top-actions{gap:8px}.photo-gallery{gap:12px}.photo-gallery .memory-frame img{height:140px}}
 @media(max-width:600px){.topbar{padding:0 20px}.top-note{display:none}.fullscreen-toggle{font-size:11px;padding:6px 10px}.top-actions{gap:12px}.photo-gallery{max-width:340px;margin:0 auto;gap:12px}.photo-gallery .memory-frame img{height:135px}.photo-gallery .memory-frame figcaption{font-size:17px}.family-wide{width:85%}.family-wide img{height:150px!important}.shooting-memory{width:75%;max-width:250px;margin:0 4px 0 auto}.shooting-memory img{height:270px}.scene-family .split-layout,.scene-travel .split-layout{gap:24px}}
 @media print{.fullscreen-toggle{display:none}}
+
+.travel-wide{grid-column:1/-1;width:78%;justify-self:center}.photo-gallery .travel-wide img{height:250px;object-position:center 36%}@media(max-width:600px){.travel-wide{width:85%}.photo-gallery .travel-wide img{height:245px}}

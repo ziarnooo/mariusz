@@ -18,7 +18,7 @@ Workflow tworzy QR na podstawie rzeczywistego adresu skonfigurowanego przez GitH
 
 ## Zdjęcia rodzinne
 
-Zdjęcia są zapisane jako zmniejszone pliki WebP w `assets/photos/`. Cztery zdjęcia są w galerii podróży, trzy w części rodzinnej, a jedno w części o strzelnicy. Galerie pokazują zdjęcia obok siebie i można je przewijać na telefonie. Obrazy rodzinne są ładowane dopiero po otwarciu odpowiedniego rozdziału. Ścieżki, opisy i rozmiary zdjęć znajdują się w `index.html`.
+Zdjęcia są zapisane jako zmniejszone pliki WebP w `assets/photos/`. Pięć zdjęć jest w galerii podróży, trzy w części rodzinnej, a jedno w części o strzelnicy. Galerie pokazują zdjęcia obok siebie i można je przewijać na telefonie. Obrazy rodzinne są ładowane dopiero po otwarciu odpowiedniego rozdziału. Ścieżki, opisy i rozmiary zdjęć znajdują się w `index.html`.
 
 ## Pełny ekran
 
