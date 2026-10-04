@@ -35,7 +35,7 @@ for path in (root / 'assets/fonts').glob('*.woff2'):
     assert path.read_bytes()[:4] == b'wOF2', f'Not an actual WOFF2 font: {path}'
 assert '540' not in html and '2215' not in html, 'Order or price accidentally published'
 assert 'rok od daty wystawienia' in html
-assert 'Borysa' in html and 'Gosi' in html and 'pięciu' in html
+assert 'Boryska' in html and 'Gosi' in html and 'pięciu' in html
 assert 'prefers-reduced-motion' in css
 assert 'noindex, nofollow' in html
 web = [root / n for n in ('index.html', 'style.css', 'app.js', 'content.js')]
