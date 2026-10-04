@@ -7,7 +7,7 @@
   const current = document.getElementById('current');
   const announcement = document.getElementById('announcement');
   const labels = ['Otwórz życzenia', 'Ruszamy dalej', 'Nowy rozdział', 'To, co najbliższe', 'Jeszcze jedno', 'Odkryj prezent', 'Zobacz Wasz voucher', 'Przeczytaj jeszcze raz'];
-  const names = ['Najlepsze przed Tobą', 'Zdrowie i 120 lat', 'Podróże i motocykle', 'Nowa praca', 'Rodzina i spokój', 'Celne strzały', 'Prezent dla Was', 'Wasz voucher'];
+  const names = ['Same wspaniałości z okazji urodzin', 'Zdrowie i 120 lat', 'Podróże i motocykle', 'Nowa praca', 'Rodzina i spokój', 'Celne strzały', 'Prezent dla Was', 'Wasz voucher'];
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   let index = 0;
   let busy = false;
